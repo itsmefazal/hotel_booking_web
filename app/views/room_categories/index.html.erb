@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Room categories</h1>
+
+<div id="room_categories">
+  <% @room_categories.each do |room_category| %>
+    <%= render room_category %>
+    <p>
+      <%= link_to "Show this room category", room_category %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New room category", new_room_category_path %>

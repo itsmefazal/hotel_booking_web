@@ -1,0 +1,77 @@
+<p style="color: green"><%= notice %></p>
+<div class="card">
+  <div class="card-header">
+  <span class="card-title" style="color:#17a2b8">FIND HOTELS</span>
+  <% if current_user.admin? %>
+  <div class="offset-sm-9 col-sm-3">
+  <%= link_to "New Hotel", new_hotel_path, class: "btn btn-block btn-outline-info btn-sm" %>
+  </div>
+  <% end %>
+  </div>
+  <div class="card-body">
+
+<%= form_with(url: "/hotels", method: :get, role: 'search') do |form| %>
+<div class="row">
+<div class="col-3">
+  <div class="form-group">
+    <%= form.label :location, style: "display: block" %>
+    <%= text_field_tag :q, params[:q], placeholder: 'Search by location ...', class: "form-control" %>
+  </div>
+</div>
+<div class="col-2">
+  <div class="form-group">
+    <%= form.label :no_of_rooms, style: "display: block" %>
+    <%= form.text_field :no_of_rooms, value: @no_of_rooms, class: "form-control", placeholder: "No of Rooms"  %>
+  </div>
+</div>
+<div class="col-3">
+  <div class="form-group">
+    <%= form.label :check_in, style: "display: block" %>
+    <%= form.date_field :check_in, value: @check_in, class: "form-control", placeholder: "Select check_in date"  %>
+  </div>
+</div>
+<div class="col-3">
+  <div class="form-group">
+    <%= form.label :check_out, style: "display: block" %>
+    <%= form.date_field :check_out, value: @check_out, class: "form-control", placeholder: "Select check_out date"  %>
+  </div>
+</div>
+<div class="form-group">
+  <%= form.submit "Search", class: "btn btn-info", style: "margin-top: 32px" %>
+</div>
+</div>
+<% end %>
+
+</div>
+</div>
+
+<% if @hotels %>
+<div class="card">
+  <div class="card-header">
+  <h1 class="card-title" style="color:#17a2b8">SELECT & START BOOKING</h1>
+  </div>
+
+  <div class="card-body p-0">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+      <th style="width: 10px">#</th>
+      <th>Name</th>
+      <th>Location</th>
+      <th>Status</th>
+      </tr>
+      </thead>
+      <tbody>
+        <% @hotels.each_with_index do |hotel, i| %>
+          <tr>
+            <td><%= i + 1 %>.</td>
+            <td><%= link_to hotel.name, "/hotels/#{hotel.id}?no_of_rooms=#{@no_of_rooms}&check_in=#{@check_in}&check_out=#{@check_out}" %></td>
+            <td><%= hotel.location %></td>
+            <td><span class="btn btn-success btn-xs"><%= active_status(hotel) %></span></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+<% end %>

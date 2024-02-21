@@ -1,0 +1,29 @@
+<div id="<%= dom_id booking %>">
+  <p>
+    <strong>Hotel:</strong>
+    <%= booking.hotel.name %>
+  </p>
+
+  <p>
+    <strong>Booked by:</strong>
+    <%= booking.user.name %>
+  </p>
+  <p>
+    <strong>Check in:</strong>
+    <%= booking.check_in.to_date %> 12:00 PM
+  </p>
+
+  <p>
+    <strong>Check out:</strong>
+    <%= booking.check_out.to_date %> 11:00 AM
+  </p>
+
+  <p>
+    <strong>Price:</strong>
+    <%= booking.balance_amount %>
+  </p>
+
+  <b>Room Details: </b>
+  <%= booking.rooms.collect(&:room_no).join("|")%>
+
+</div>

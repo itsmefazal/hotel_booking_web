@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>HotelBookingWeb</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+  <% if current_user %>
+  <body data-scrollbar-auto-hide="n" class="hold-transition ">
+      <div class="wrapper">
+        <%= render "base/header" %>
+        <%= render "base/sidebar" %>
+        <div class="content-wrapper">
+          <div class="content container-fluid">
+            <div class="container-fluid">
+              <%= yield %>
+            </div>
+          </div>
+        </div>
+      <div>
+  </body>
+  <% end %>
+  <body>
+    <%= yield unless current_user %>
+  </body>
+</html>

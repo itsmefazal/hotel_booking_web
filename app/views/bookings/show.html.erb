@@ -1,0 +1,17 @@
+<p style="color: green"><%= notice %></p>
+<div class="col-md-6">
+  <p class="alert"><%= alert %></p>
+  <div class="card card-info">
+    <div class="card-header">
+      <h2 class="card-title">Booking Details</h2>
+    </div>
+    <div class='card-body'>
+      <%= render @booking %>
+    </div>
+  </div>
+  <%= link_to "Edit Booking", edit_booking_path(@booking) %>
+  <%= form_with(model: @booking, method: :put, :data   => { turbo: true, turbo_confirm: "Are you Sure?" }) do |form| %>
+    <%= form.hidden_field :status, value: "CANCELLED" %>
+    <%= form.submit "Cancel Booking", class: "btn btn-block btn-outline-danger btn-sm", data: { confirm: 'Your confirm message' } %>
+  <% end %>
+</div>

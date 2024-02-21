@@ -1,0 +1,92 @@
+<p style="color: green"><%= notice %></p>
+<div class="row">
+  <% if current_user.admin? %>
+  <div class="offset-sm-9 col-sm-3">
+    <%= link_to "Add Room", new_hotel_room_path(@hotel) , class: "btn btn-block btn-outline-info btn-sm" %>
+  </div>
+  <% end %>
+<div class="col-md-3">
+  <p class="alert"><%= alert %></p>
+  <div class="card card-info">
+    <div class="card-header">
+      <h2 class="card-title">Hotel Details</h2>
+    </div>
+    <div class='card-body'>
+      <%= render @hotel %>
+    </div>
+  </div>
+   <%= link_to "Edit Hotel", edit_hotel_path(@hotel) %>
+  <% if current_user.admin? %>
+    <%= button_to "Destroy this hotel", @hotel, method: :delete, class: "btn btn-block btn-outline-danger btn-sm", form: {data: {turbo_confirm: 'Are you sure?'}} %>
+  <% end %>
+</div>
+
+<div class="col-md-9">
+  <p class="alert"><%= alert %></p>
+  <div class="card card-info">
+    <div class="card-header">
+      <h2 class="card-title">Hotel Rooms</h2>
+    </div>
+    <div class='card-body'>
+      <%= form_with(model: Booking.new) do |form| %>
+      <table class="table table-striped">
+        <thead>
+        <tr>
+        <th style="width: 10px">#</th>
+        <th style="width: 100px">Room No</th>
+        <th style="width: 120px">Room Type</th>
+        <th>Capacity</th>
+        <th>Price</th>
+        <th>Facilities</th>
+        </tr>
+        </thead>
+        <tbody>
+          <div class="row">
+          <div class="col-3">
+            <div class="form-group">
+              <%= form.label :location, style: "display: block" %>
+              <%= text_field_tag :q, params[:q] || @hotel.location, placeholder: 'Search by location ...', class: "form-control" %>
+            </div>
+          </div>
+          <div class="col-2">
+            <div class="form-group">
+              <%= form.label :no_of_rooms, style: "display: block" %>
+              <%= form.text_field :no_of_rooms, value: @no_of_rooms, class: "form-control", placeholder: "No of Rooms"  %>
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="form-group">
+              <%= form.label :check_in, style: "display: block" %>
+              <%= form.date_field :check_in, value: @check_in, class: "form-control", placeholder: "Select check_in date"  %>
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="form-group">
+              <%= form.label :check_out, style: "display: block" %>
+              <%= form.date_field :check_out, value: @check_out, class: "form-control", placeholder: "Select check_out date"  %>
+            </div>
+          </div>
+            <%= form.hidden_field :hotel_id, value: @hotel.id %>
+            <%= form.hidden_field :user_id, value: current_user.id %>
+            <%= form.hidden_field :status, value: "BOOKED" %>
+          </div>
+
+          <% @hotel_rooms.each_with_index do |hotel_room, i| %>
+            <tr>
+              <td><%= check_box_tag "booking[room_ids][]", hotel_room.id, nil %></td>
+              <td><%= hotel_room.room_no %></td>
+              <td><%= hotel_room.room_category.name %></td>
+              <td><%= hotel_room.room_category.capacity %></td>
+              <td><%= hotel_room.room_category.price %></td>
+              <td><%= hotel_room.room_category.facilities %></td>
+            </tr>
+          <% end %>
+
+        </tbody>
+      </table>
+      <%= form.submit class: "btn btn-success btn-block btn-sm"%>
+      <% end %>
+    </div>
+  </div>
+</div>
+</div>

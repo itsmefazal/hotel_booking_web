@@ -1,0 +1,32 @@
+<div class="card">
+  <div class="card-header">
+  <h1 class="card-title">Bookings</h1>
+  </div>
+
+  <div class="card-body p-0">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+      <th style="width: 10px">#</th>
+      <th>Hotel Name</th>
+      <th>Location</th>
+      <th>Check-In</th>
+      <th>Check-Out</th>
+      <th>Status</th>
+      </tr>
+      </thead>
+      <tbody>
+        <% @bookings.each_with_index do |booking, i| %>
+          <tr>
+            <td><%= i + 1 %>.</td>
+            <td><%= link_to booking.hotel.name, booking %></td>
+            <td><%= booking.hotel.location %></td>
+            <td><%= booking.check_in.to_date %> 12:00 PM</td>
+            <td><%= booking.check_out.to_date %>11:00 AM</td>
+            <td><span class="btn btn-xs <%= booking.status == 'BOOKED' ? 'btn-success' : 'btn-danger' %>"><%= booking.status %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

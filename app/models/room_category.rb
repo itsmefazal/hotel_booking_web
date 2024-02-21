@@ -1,0 +1,3 @@
+class RoomCategory < ApplicationRecord
+  
+end
