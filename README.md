@@ -31,7 +31,7 @@ Room:
  - has_and_belongs_to_many :bookings
 
 RoomCategory:
- -
+ - room_full_data
 
 Booking:
  - belongs_to :hotel
