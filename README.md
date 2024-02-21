@@ -59,6 +59,25 @@ Payment:
  - Refer your bookings from My bookings section from the left menu where it displays BOOKED/ CANCELLED/COMPLETED/ARCHIVED bookings.
  - Customer can cancel their booking.
 
+**Login Page**:
+<img width="694" alt="login_page" src="https://github.com/itsmefazal/hotel_booking_web/assets/102184474/2910c883-9965-42cf-bc70-a6a929305a7d">
+
+**Find Hotels Page**:
+<img width="1440" alt="Find_Hotels_page" src="https://github.com/itsmefazal/hotel_booking_web/assets/102184474/7cf84c3d-6c7f-4d44-a0f6-4900145dde17">
+
+**Found Hotels Page**:
+<img width="1440" alt="found_hotels_page" src="https://github.com/itsmefazal/hotel_booking_web/assets/102184474/c9e86a74-cd09-4093-9005-0ffaaaecd685">
+
+**Hotel Details with Rooms Booking page**:
+<img width="1440" alt="hotel_details_with_room_booking" src="https://github.com/itsmefazal/hotel_booking_web/assets/102184474/b126a303-9374-432f-be3a-51b3a5fad4fb">
+
+**My Bookings**:
+<img width="1440" alt="my_bookings_page" src="https://github.com/itsmefazal/hotel_booking_web/assets/102184474/4f532e8a-5e0f-4b34-bb3c-e718a09377a9">
+
+**Cancel Booking**:
+<img width="1440" alt="cancel_booking_page" src="https://github.com/itsmefazal/hotel_booking_web/assets/102184474/586abbc0-fbae-478e-a64e-9e7c2451eec5">
+
+
 # seed data
 Roll.new(name: "Admin").save
 Roll.new(name: "Customer").save
